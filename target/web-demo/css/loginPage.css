@@ -1,0 +1,26 @@
+
+*{
+    margin:0 auto;
+    padding: 0;
+}
+div.container {
+    background-color: antiquewhite;
+
+    width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    display: table;
+}
+div.wrapper{
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+input[type=button]{
+    text-align: center;
+    width: 100px;
+    height: 30px;
+    background-color: lightblue;
+    font-size: large;
+}
+
