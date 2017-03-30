@@ -6,12 +6,6 @@
     <link rel="stylesheet" type="text/css" href="../css/loginPage.css">
     <script src="jquery-v1.8.3.js"></script>
     <script>
-        jQuery.('#submit-a').click(function () {
-            alert("______");
-            jQuery(".registForm").submit();
-        });
-
-        
         function validationForm() {
             var userName=document.getElementById("userName").value;
             var password=document.getElementById("password").value;
@@ -21,16 +15,26 @@
             //validationP(confirmPassword,"confirmPassword");
             if(password!=confirmPassword)
             {
-                alert("Password is not same as Confirm Password!")
+                alert("Password should not same as Confirm Password!");
+                return;
             }
-            function validationP(value,name) {
-                if (value==null || value=="")
-                {
-                    alert(name+" can't be null")
-                    return false;
-                }
+            else
+            {
+                /*var formRegist=document.getElementById("registForm");
+                formRegist.action="/web-demo/userRegist";
+                formRegist.submit();*/
+                $.post('/web-demo/userRegist',{userName:userName,password:password},function(text,status){alert(text);});
             }
-            document.getElementById("registInfo").submit();
+        }
+        function pass(text) {
+
+        }
+        function validationP(value,name) {
+            if (value==null || value=="")
+            {
+                alert(name+" can't be null")
+                return false;
+            }
         }
         function turnToLoginPage() {
             self.location.href="loginPage.html";
@@ -44,8 +48,7 @@
     <div id="mainDiv" class="wrapper" style="height: 300px; width: 500px;">
         <img src="../img/ru.jpg" width="200px" height="120px" >
         <h1>Welcome</h1><br>
-
-        <form id="registForm" method="post" >
+        <form id="registForm"  method="POST">
             <fieldset style="width: 400px; height: 250px; font-size: large">
                 <legend> Regist information:</legend>
                 <br /><br />
@@ -55,16 +58,15 @@
                     <p>Confirm Password:</p>
                 </div>
                 <div style="width: 150px;float: left">
-                    <p><input type="text" id="userName" value=></p>
+                    <p><input type="text" id="userName" name="userName" /></p>
                     <br />
-                    <p><input type="password" id="password" value=></p>
+                    <p><input type="password" id="password" name="password" /></p>
                     <br />
-                    <p><input type="password" id="confirmPassword" value= ></p><br /><br />
+                    <p><input type="password" id="confirmPassword" name="confirmPassword"/></p><br /><br />
                 </div>
-
                 <div style="width: 400px; clear: both">
-                    <p><input type="button"  name="Login" value="Login" onclick="turnToLoginPage();" >
-                        <input id="submit-a" type="button" name="Regist" value="Regist" onclick="validationForm()"></p>
+                    <p><input type="button"  value="Login" onclick="turnToLoginPage()" />
+                        <input id="submit-r" type="button" value="Regist" onclick="validationForm()"/></p>
                 </div>
             </fieldset>
         </form>
