@@ -10,12 +10,22 @@
             var userName=document.getElementById("userName").value;
             var password=document.getElementById("password").value;
             var confirmPassword=document.getElementById("confirmPassword").value;
-            validationP(userName,"userName");
-            validationP(password,"password");
+/*            validationP(userName,"userName");
+            validationP(password,"password");*/
             //validationP(confirmPassword,"confirmPassword");
-            if(password!=confirmPassword)
+            if(userName.replace(' ','')=="")
             {
-                alert("Password should not same as Confirm Password!");
+                alert("用户名为空，请重新输入！");
+                return;
+            }
+            else if((password.replace(' ','')=="")||(confirmPassword.replace(' ','')==""))
+            {
+                alert("密码不能为空，请重新输入！");
+                return;
+            }
+            else if(password!=confirmPassword)
+            {
+                alert("两次输入密码不一致，请重新输入！");
                 return;
             }
             else
@@ -23,12 +33,13 @@
                 /*var formRegist=document.getElementById("registForm");
                 formRegist.action="/web-demo/userRegist";
                 formRegist.submit();*/
-                $.post('/web-demo/userRegist',{userName:userName,password:password},function(text,status){alert(text);});
+                $.post('/web-demo/userRegist',{userName:userName,password:password},
+                        function back(text,status) {
+                            alert(text);
+                        });
             }
         }
-        function pass(text) {
 
-        }
         function validationP(value,name) {
             if (value==null || value=="")
             {
@@ -36,9 +47,7 @@
                 return false;
             }
         }
-        function turnToLoginPage() {
-            self.location.href="loginPage.html";
-        }
+
     </script>
 </head>
 <body>

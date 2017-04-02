@@ -5,12 +5,33 @@
     <title>Login</title>
 
     <link rel="stylesheet" type="text/css" href="../css/loginPage.css">
-    <script language="JavaScript" type="text/javascript">
-        function validationForm() {
-
-        }
-        function turnToRegistPage() {
-            self.location.href="registPage.html";
+    <script src="jquery-v1.8.3.js"></script>
+    <script src="page.js"></script>>
+    <script>
+        function submitForm() {
+            var userName = document.getElementById("userName").value;
+            var password = document.getElementById("password").value;
+            if(userName.replace(' ','')=="")
+            {
+                alert("用户名为空，请重新输入！");
+                return;
+            }
+            else if(password.replace(' ','')=="")
+            {
+                alert("密码不能为空，请重新输入！");
+                return;
+            }
+            else {
+                $.post('/web-demo/userLogin', {userName: userName, password: password},
+                        function back(text,status) {
+                            alert(text);
+                            if(text=="登录成功！")
+                            {
+                                writeUserCookies(userName);
+                                turnToUserCenterPage();
+                            }
+                        })
+            }
         }
     </script>
 </head>
@@ -31,14 +52,14 @@
                     <p>Password:</p><br /><br />
                 </div>
                 <div style="width: 150px;float: left">
-                    <p><input type="text" name="userName" required></p>
+                    <p><input type="text" id="userName" name="userName" required></p>
                     <br />
-                    <p><input type="password" name="password" required></p><br /><br />
+                    <p><input type="password" id="password" name="password" required></p><br /><br />
                 </div>
 
                 <div style="width: 400px; clear: both">
-                    <p><input type="button"  name="Submit" value="Login" onclick="validationForm()">
-                    <input type="button" name="Regist" value="Regist" onclick="turnToRegistPage()"></p>
+                    <p><input type="button"  name="Submit" value="Login" onclick="submitForm()" />
+                    <input type="button" name="Regist" value="Regist" onclick="turnToRegistPage()" /></p>
                 </div>
 
             </fieldset>
