@@ -44,4 +44,13 @@ input.smallButton{
     width: 55px;
     font-size: small;
 }
+input.tableButton{
+    height: 25px;
+    width: 55px;
+    font-size: small;
+    background-color: beige;
+}
 
+table{border-collapse:collapse;border-spacing:0;border-left:1px;border-top:1px ;}
+th,td{border-right:1px;border-bottom:1px;padding:2px 2px;}
+th{font-weight:bold;background:#ccc;}

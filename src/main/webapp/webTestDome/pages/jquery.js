@@ -1,6 +1,4 @@
-/**
- * Created by Susie on 2017/3/27.
- */
+
 /*!
  * jQuery JavaScript Library v3.2.0
  * https://jquery.com/
