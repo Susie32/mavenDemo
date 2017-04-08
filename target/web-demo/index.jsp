@@ -1,9 +1,7 @@
 <html>
 <head>
     <script>
-        function turnToLoginPage() {
-            self.location.href="pages/loginPage.html";
-        }
+        self.location.href="webTestDome/pages/loginPage.html";
     </script>
 </head>
 <body>
