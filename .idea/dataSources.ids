@@ -37,10 +37,10 @@
         <sequence-identity>1</sequence-identity>
       </column>
       <column id="12" parent="4" name="userName">
-        <data-type>varchar(10)</data-type>
+        <data-type>varchar(20)</data-type>
       </column>
       <column id="13" parent="4" name="password">
-        <data-type>varchar(10)</data-type>
+        <data-type>varchar(20)</data-type>
       </column>
       <key id="14" parent="4" name="PRIMARY">
         <columns>id</columns>

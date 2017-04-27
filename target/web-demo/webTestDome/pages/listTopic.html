@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Center</title>
+    <link rel="stylesheet" type="text/css" href="../css/loginPage.css">
+    <script src="jquery.js"></script>
+    <script src="page.js"></script>
+</head>
+<!--<body onload="loginedLoad()">-->
+<body onload="getTableInfo()">
+<div id="topUserDiv" class="topContainer">
+    <b><label id="loginedUserName" style="background-color: transparent;">userName</label></b>
+    <input type="button" id="logout" class="smallButton" value="Logout" onclick="logout()" >
+</div>
+<div class="topicContainner" id="tableDiv" >
+    <input type="button" style="background-color: transparent" class="smallButton" value="List" onclick="turnTolistTopicPage()">
+    <input type="button" style="background-color: transparent" class="smallButton" value="New" onclick="turnToUserCenterPage()">
+    <div id="tableArea" style="display: block">
+    <table id="tableForfill" style="background-color: azure;" border="1"/>
+        <thead>
+        <thead>
+        <tr id="fnListSearchTh">
+            <!--"date","id","title","status","action"-->
+            <th width="200px" sortcol="">时间</th>
+            <th width="100px">ID</th>
+            <th width="150px">标题</th>
+            <!--<th>参会项目/事项</th>-->
+            <th width="100px">状态</th>
+            <th width="110px">操作</th>
+        </tr>
+        </thead>
+        <tbody id="tableForFillBody">
+        </tbody>
+    </table>
+    <span id="spanFirst">第一页</span><span id="spanPre">上一页</span><span id="spanNext">下一页</span><span id="spanLast">最后一页</span>第<span id="spanPageNum"></span>页/共<span id="spanTotalPage"></span>页
+    </div>
+    <div id="editArea" style="display: none" >
+        <div id="newTopic" class="container" style="width: 600px;visibility: visible">
+            <form method="post">
+                <br>
+                <p style="text-align:left">Title:
+                    <input type="text" id="topicTitle" name="topicTitle"  style="width: 350px;text-align: left"/>
+                    <input type="button" class="smallButton" id="Submit" value="Submit" onclick="submitEditForm('Submit')" />
+                    <input type="button" class="smallButton" id="Save" value="Save" onclick="submitEditForm('Save')"/>
+                </p><hr>
+                <p style="text-align:left">Content:</p>
+                <textarea id="topicContent" name="topicContent" style="width: 650px;height: 300px;"></textarea>
+            </form>
+        </div>
+    </div>
+    <div id="viewArea" style="display: none" >
+        <div id="viewTopic" class="container" style="width: 600px;visibility: visible">
+            <form method="post">
+                <br>
+                <p style="text-align:left">Title:
+                    <input type="text" readonly="readonly" id="viewTopicTitle" name="topicTitle"  style="width: 350px;text-align: left"/>
+                </p><hr>
+                <p style="text-align:left">Content:</p>
+                <textarea id="viewTopicContent" readonly="readonly" name="topicContent" style="width: 650px;height: 300px;"></textarea>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    //var data=[{"id":"1","title":"1","content":"2","status":"Save","date":"2017-04-02 00:43:59.0"},{"id":"2","title":"www weh","content":"rjhg fjkeee ee","status":"Save","date":"2017-04-02 01:17:19.0"},{"id":"3","title":"2www weh2","content":"2rjhg fjkeee ee2","status":"Submit","date":"2017-04-02 01:17:48.0"},{"id":"4","title":"title hahha","content":"Content hahah","status":"Submit","date":"2017-04-02 01:18:53.0"},{"id":"5","title":"这个是标题","content":"这个是内容","status":"Submit","date":"2017-04-02 01:19:15.0"},{"id":"6","title":"这个是标题222","content":"这个是内容这个是内容","status":"Save","date":"2017-04-02 01:20:21.0"},{"id":"7","title":"user1sSomething","content":"dsfhkjf ejkew\nenr keew","status":"Submit","date":"2017-04-02 20:54:54.0"},{"id":"8","title":"ere","content":"r","status":"Save","date":"2017-04-06 18:04:07.0"},{"id":"9","title":"ewrwe","content":"r","status":"Submit","date":"2017-04-06 18:04:39.0"},{"id":"10","title":"rwer","content":"t","status":"Submit","date":"2017-04-06 18:07:33.0"},{"id":"12","title":"werwerwe","content":"rt","status":"Save","date":"2017-04-06 18:45:24.0"},{"id":"13","title":"ee","content":"wert","status":"Save","date":"2017-04-06 18:48:31.0"},{"id":"14","title":"ee","content":"ewr","status":"Save","date":"2017-04-06 18:50:39.0"},{"id":"15","title":"ee","content":"wew","status":"Save","date":"2017-04-06 19:10:33.0"},{"id":"16","title":"哈哈哈哈","content":"r","status":"Submit","date":"2017-04-06 19:15:19.0"},{"id":"17","title":"哈哈哈哈","content":"是佛 i 和违法饿我好味","status":"Submit","date":"2017-04-06 19:16:02.0"}]
+    //var data={};
+/*    var totalPage = document.getElementById("spanTotalPage");
+    var pageNum = document.getElementById("spanPageNum");*/
+    var spanPre = document.getElementById("spanPre");
+    var spanNext = document.getElementById("spanNext");
+    var spanFirst = document.getElementById("spanFirst");
+    var spanLast = document.getElementById("spanLast");
+    var pageInfo= {pageSize:10,currentPageNum:0,allItemNum:0,totalPageNum:0,spanPageNum:document.getElementById("spanPageNum")};
+    var dataInfo={data:0,editID:-1};
+    //totalPage.innerHTML = totalPageNum.toString();
+
+    //var editID=-1;
+    function initTablePageInfo() {
+        var spanTotalPage = document.getElementById("spanTotalPage");
+        //var spanPageNum = document.getElementById("spanPageNum");
+        var data=dataInfo.data;
+        pageInfo.allItemNum=data.length;
+        pageInfo.totalPageNum=Math.ceil(data.length/pageInfo.pageSize);
+        spanTotalPage.innerHTML = pageInfo.totalPageNum.toString();
+    }
+    function getTableInfo() {
+        loginedLoad();
+        var userName=getKeyfromCookie("userName");
+        var listTopicTable=document.getElementById("listTopicTable");
+        /*            alert("ey");
+         var test="<tr><th>id</th><th>name</th></tr><tr><th>2</th><th>Susie</th></tr>";
+         listTopicTable.innerHTML=test;*/
+        /*            $.post('/web-demo/listTopic',{userName:userName},function back(text,status) {
+         //alert(text);
+         listTopicTable.innerHTML=text;*/
+        $.post('/web-demo/listTopic',{userName:userName},function back(text,status) {
+            dataInfo.data=eval("("+text+")");
+            initTablePageInfo();
+            fillData(1);
+        });
+    }
+
+    function fillData(pageNo) {
+        //alert(data);
+        var data=dataInfo.data;
+        pageInfo.currentPageNum=pageNo;
+        pageInfo.spanPageNum.innerHTML = pageInfo.currentPageNum;
+        var tbody=document.getElementById("tableForFillBody");
+        var rowNum=tbody.rows.length;
+        for(var i=rowNum-1;i>=0;i--) {
+            tbody.deleteRow(i);
+        }
+        var from=(pageNo-1)*pageInfo.pageSize;
+        var to=0;
+        if (pageNo*pageInfo.pageSize>pageInfo.allItemNum){
+            to=pageInfo.allItemNum-1;
+        }
+        else {
+            to=pageNo*pageInfo.pageSize-1;
+        }
+        for(var n=from;n<=to;n++)
+        {
+            var tr=tbody.insertRow();
+            var obj=data[n];
+            var td;
+            var line=[obj.date,obj.id,obj.title,obj.status,obj.content];
+            for(var i=0;i<line.length-1;i++)
+            {
+                td=tr.insertCell();
+                td.innerHTML=line[i];
+            }
+            td=tr.insertCell();
+            td.innerHTML="<input type='button' class='tableButton' value='Edit' onclick='edit("+n+")'/>";
+            td.innerHTML=td.innerHTML+"<input type='button' class='tableButton' value='Detail' onclick='view("+n+")'/>";
+
+        }
+        if(pageNo+1<=pageInfo.totalPageNum) {
+            lastLink();
+            nextLink();
+        }
+        else
+        {
+            lastText();
+            nextText();
+        }
+        if(pageNo-1>0)
+        {
+            preLink();
+            firstLink();
+        }
+        else
+        {
+            preText();
+            firstText();
+        }
+    }
+
+    function pre() {
+        pageInfo.currentPageNum = pageInfo.currentPageNum-1;
+        fillData(pageInfo.currentPageNum);
+    }
+    function next() {
+        pageInfo.currentPageNum = pageInfo.currentPageNum+1;
+        fillData(pageInfo.currentPageNum);
+    }
+    function first() {
+        pageInfo.currentPageNum = 1;
+        fillData(pageInfo.currentPageNum);
+    }
+    function last() {
+        pageInfo.currentPageNum = pageInfo.totalPageNum;
+        fillData(pageInfo.currentPageNum);
+    }
+
+    //显示链接
+    function preLink() { spanPre.innerHTML = "<a href='javascript:pre();'>上一页</a>"; }
+    function preText() { spanPre.innerHTML = "上一页"; }
+
+    function nextLink() { spanNext.innerHTML = "<a href='javascript:next();'>下一页</a>"; }
+    function nextText() { spanNext.innerHTML = "下一页"; }
+
+    function firstLink() { spanFirst.innerHTML = "<a href='javascript:first();'>第一页</a>"; }
+    function firstText() { spanFirst.innerHTML = "第一页"; }
+
+    function lastLink() { spanLast.innerHTML = "<a href='javascript:last();'>最后一页</a>"; }
+    function lastText() { spanLast.innerHTML = "最后一页"; }
+
+    function loginedLoad() {
+        //writeUserCookies("Susie");
+        var userName=getKeyfromCookie("userName");
+        if (userName==null||userName=='')
+        {
+            alert("请先登录！")
+            turnToLoginPage();
+        }
+        else
+        {
+            var userNameLabel=document.getElementById("loginedUserName");
+            //userNameInput.setAttribute("text",userName);
+            userNameLabel.innerText=userName;
+        }
+    }
+
+    function edit(n) {
+        var data=dataInfo.data;
+        var editArea=document.getElementById("editArea");
+        var tableArea=document.getElementById("tableArea");
+        var topicTitle=document.getElementById("topicTitle");
+        var topicContent=document.getElementById("topicContent");
+/*        var SubmitButton=document.getElementById("Submit");
+        var SaveButton=document.getElementById("Save");*/
+        tableArea.style.display="none";
+        editArea.style.display="block";
+        topicTitle.value=data[n].title;
+        topicContent.value=data[n].content;
+        dataInfo.editID=data[n].id;
+/*        function submitForm(kinds) {
+            submitEditForm(kinds,id);
+        }*/
+       /* SubmitButton.onclick=submitEditForm("Submit",id);
+        SaveBUtton.onclick=submitEditForm("Save",id);*/
+    }
+
+    function view(n) {
+        var data=dataInfo.data;
+        var viewArea=document.getElementById("viewArea");
+        var tableArea=document.getElementById("tableArea");
+        var viewTopicTitle=document.getElementById("viewTopicTitle");
+        var viewTopicContent=document.getElementById("viewTopicContent");
+        tableArea.style.display="none";
+        viewArea.style.display="block";
+        viewTopicTitle.value=data[n].title;
+        viewTopicContent.value=data[n].content;
+    }
+
+    function submitEditForm(kinds) {
+        var editArea=document.getElementById("editArea");
+        var tableArea=document.getElementById("tableArea");
+        var userName=getKeyfromCookie("userName");
+        var title=document.getElementById("topicTitle").value;
+        var content=document.getElementById("topicContent").value;
+        if(title.replace(" ","")==""||content.replace(" ","")=="")
+        {
+            alert("请先填写完整标题和内容之后再提交！");
+        }
+        else
+        {
+            $.post('/web-demo/newTopic',{topicTitle:title,topicContent:content,kinds:kinds,userName:userName,topicID:dataInfo.editID},
+                    function back(text,status) {
+                        alert(text);
+                        tableArea.style.display="block";
+                        editArea.style.display="none";
+                        getTableInfo();
+                    });
+        }
+    }
+
+</script>
+</html>

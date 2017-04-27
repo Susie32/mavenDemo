@@ -4,18 +4,22 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <filter>
+  <context-param>
+    <param-name>javax.faces.CONFIG_FILES</param-name>
+    <param-value>/test/main/webapp/webTestDome/userAction/registUser.xml</param-value>
+  </context-param>
+<!--  <filter>
     <filter-name>charsetFilter</filter-name>
     <filter-class>main.webapp.webTestDome.userAction.charactorFilter</filter-class>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>utf-8</param-value>
     </init-param>
-  </filter>
-  <filter-mapping>
+  </filter>-->
+ <!-- <filter-mapping>
     <filter-name>charsetFilter</filter-name>
-    <url-pattern>/*</url-pattern><!--URL映射，给所有页面处理乱码-->
-  </filter-mapping>
+    <url-pattern>/*</url-pattern>&lt;!&ndash;URL映射，给所有页面处理乱码&ndash;&gt;
+  </filter-mapping>-->
 
   <servlet>
     <servlet-name>userRegist</servlet-name>
@@ -33,6 +37,11 @@
     <servlet-name>listTopic</servlet-name>
     <servlet-class>main.webapp.webTestDome.userAction.listTopic</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>listTopic</servlet-name>
@@ -49,5 +58,9 @@
   <servlet-mapping>
     <servlet-name>userLogin</servlet-name>
     <url-pattern>/web-demo/userLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
 </web-app>

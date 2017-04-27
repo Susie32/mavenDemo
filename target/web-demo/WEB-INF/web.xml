@@ -4,6 +4,10 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
+  <context-param>
+    <param-name>javax.faces.CONFIG_FILES</param-name>
+    <param-value>/test/main/webapp/webTestDome/userAction/registerUser-config.xml</param-value>
+  </context-param>
   <filter>
     <filter-name>charsetFilter</filter-name>
     <filter-class>main.webapp.webTestDome.userAction.charactorFilter</filter-class>
@@ -33,6 +37,11 @@
     <servlet-name>listTopic</servlet-name>
     <servlet-class>main.webapp.webTestDome.userAction.listTopic</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>Faces Servlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
 
   <servlet-mapping>
     <servlet-name>listTopic</servlet-name>
@@ -49,5 +58,9 @@
   <servlet-mapping>
     <servlet-name>userLogin</servlet-name>
     <url-pattern>/web-demo/userLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Faces Servlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
   </servlet-mapping>
 </web-app>

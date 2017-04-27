@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+    <title>User Center</title>
+    <link rel="stylesheet" type="text/css" href="../css/loginPage.css">
+    <script src="jquery.js"></script>
+    <script src="page.js"></script>
+    <script>
+        function loginedLoad() {
+            //writeUserCookies("Susie");
+            var userName=getKeyfromCookie("userName");
+            if (userName==null||userName=='')
+            {
+                alert("请先登录！")
+                turnToLoginPage();
+            }
+            else
+            {
+                var userNameLabel=document.getElementById("loginedUserName");
+                //userNameInput.setAttribute("text",userName);
+                userNameLabel.innerText=userName;
+            }
+        }
+        function submitForm(kinds) {
+            var userName=getKeyfromCookie("userName");
+            var title=document.getElementById("topicTitle").value;
+            var content=document.getElementById("topicContent").value;
+            var topicID=-1;
+            if(title.replace(" ","")==""||content.replace(" ","")=="")
+            {
+                alert("请先填写完整标题和内容之后再提交！");
+            }
+            else
+            {
+
+                $.post('/web-demo/newTopic',{topicTitle:title,topicContent:content,kinds:kinds,userName:userName,topicID:topicID},
+                        function back(text,status) {
+                            alert(text);
+                        });
+            }
+        }
+        function addListTopic() {
+            var topicContainnerDiv=document.getElementById("topicContainner");
+            var newTopicDiv=document.getElementById("newTopic");
+            //delete old div
+            topicContainnerDiv.removeChild(newTopicDiv);
+            //create new div
+            var listTopicDiv=document.createElement("listTopic");
+
+            topicContainnerDiv.appendChild(listTopicDiv);
+        }
+    </script>
+</head>
+<body onload="loginedLoad()">
+    <div id="topUserDiv" class="topContainer">
+        <b><label id="loginedUserName" style="background-color: transparent;">userName</label></b>
+        <input type="button" id="logout" class="smallButton" value="Logout" onclick="logout()" >
+    </div>
+    <div class="topicContainner" id="topicContainner">
+        <input type="button" style="background-color: transparent" class="smallButton" value="List" onclick="turnTolistTopicPage()">
+        <input type="button" style="background-color: transparent" class="smallButton" value="New">
+        <div id="newTopic" class="container" style="width: 600px;visibility: visible">
+            <form method="post">
+            <br>
+            <p style="text-align:left">Title:
+            <input type="text" id="topicTitle" name="topicTitle" style="width: 350px;text-align: left"/>
+                <input type="button" class="smallButton" name="kinds" value="Submit" onclick="submitForm('Submit')"/>
+                <input type="button" class="smallButton" name="kinds" value="Save" onclick="submitForm('Save')"/>
+            </p><hr>
+            <p style="text-align:left">Content:</p>
+            <textarea id="topicContent" name="topicContent" style="width: 650px;height: 300px;"></textarea>
+            </form>
+        </div>
+    </div>
+
+    <!--<div id="topDiv2" class="container" style="height: 100px">
+    </div>-->
+</body>
+</html>

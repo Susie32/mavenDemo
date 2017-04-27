@@ -1,0 +1,20 @@
+<content>
+    <user id="1">
+        <title>normal test user</title>
+        <userName>testUser1</userName>
+        <password>111111</password>
+        <expect>注册成功！</expect>
+    </user>
+    <user id="2">
+        <title>normal test user2</title>
+        <userName>testUser2</userName>
+        <password>111111</password>
+        <expect>注册成功！</expect>
+    </user>
+    <user id="2">
+        <title>normal test user2</title>
+        <userName>testUser2</userName>
+        <password>111111</password>
+        <expect>注册成功！</expect>
+    </user>
+</content>

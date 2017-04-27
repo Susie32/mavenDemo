@@ -27,6 +27,11 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/webapp/config" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/webapp/webTestDome/config" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/target/web-demo/webTestDome/userAction" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/web-demo/webTestDome/dbcpConn" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/web-demo/webTestDome/test" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/target/web-demo/webTestDome" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/webapp/test" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
@@ -45,5 +50,8 @@
         <jarDirectory url="file://$USER_HOME$/jar" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="easymock-3.4" level="project" />
+    <orderEntry type="library" name="lib" level="project" />
+    <orderEntry type="library" name="objenesis-2.5" level="project" />
   </component>
 </module>

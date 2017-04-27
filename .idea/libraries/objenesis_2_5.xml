@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="objenesis-2.5">
+    <CLASSES>
+      <root url="file://$USER_HOME$/jar/objenesis-2.5.1" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://$USER_HOME$/jar/objenesis-2.5.1" />
+    </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/jar/objenesis-2.5.1" recursive="false" />
+    <jarDirectory url="file://$USER_HOME$/jar/objenesis-2.5.1" recursive="false" type="SOURCES" />
+  </library>
+</component>
