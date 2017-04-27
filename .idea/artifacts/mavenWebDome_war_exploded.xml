@@ -34,6 +34,7 @@
           <element id="library" level="project" name="lib" />
           <element id="library" level="project" name="objenesis-2.5" />
           <element id="file-copy" path="$USER_HOME$/jar/javaee-api-7.0.jar" />
+          <element id="file-copy" path="$USER_HOME$/jar/javax.faces-2.1.12.jar" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="mavenWebDome/web/Web" />

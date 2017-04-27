@@ -1,5 +1,5 @@
+/*
 package main.webapp.webTestDome.userAction;
-
 import main.webapp.webTestDome.dbcpConn.DBCPAction;
 import org.junit.Test;
 import org.junit.*;
@@ -19,9 +19,11 @@ import java.util.HashMap;
 import static java.awt.SystemColor.text;
 
 
+*/
 /**
  * Created by Susie on 2017/4/20.
- */
+ *//*
+
 public class userRegisterTest {
     @Test
     public void registerFailWithDuplicateUserName_get(){
@@ -110,3 +112,4 @@ public class userRegisterTest {
         catch (Exception e){e.printStackTrace();}
     }
 }
+*/
