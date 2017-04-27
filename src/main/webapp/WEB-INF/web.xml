@@ -4,10 +4,10 @@
 
 <web-app>
   <display-name>Archetype Created Web Application</display-name>
-  <context-param>
+<!--  <context-param>
     <param-name>javax.faces.CONFIG_FILES</param-name>
     <param-value>/test/main/webapp/webTestDome/userAction/registUser.xml</param-value>
-  </context-param>
+  </context-param>-->
   <filter>
     <filter-name>charsetFilter</filter-name>
     <filter-class>main.webapp.webTestDome.userAction.charactorFilter</filter-class>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<link>
+    <meta charset="UTF-8">
+    <title>Regist</title>
+    <link rel="stylesheet" type="text/css" href="../css/loginPage.css">
+    <script src="jquery-v1.8.3.js"></script>
+    <script src="page.js"></script>
+    <script>
+        function validationForm() {
+            var userName=document.getElementById("userName").value;
+            var password=document.getElementById("password").value;
+            var confirmPassword=document.getElementById("confirmPassword").value;
+/*            validationP(userName,"userName");
+            validationP(password,"password");*/
+            //validationP(confirmPassword,"confirmPassword");
+            if(userName.replace(' ','')=="")
+            {
+                alert("用户名为空，请重新输入！");
+                return;
+            }
+            else if((password.replace(' ','')=="")||(confirmPassword.replace(' ','')==""))
+            {
+                alert("密码不能为空，请重新输入！");
+                return;
+            }
+            else if(password!=confirmPassword)
+            {
+                alert("两次输入密码不一致，请重新输入！");
+                return;
+            }
+            else
+            {
+                /*var formRegist=document.getElementById("registForm");
+                formRegist.action="/web-demo/userRegist";
+                formRegist.submit();*/
+                $.post('/web-demo/userRegist',{userName:userName,password:password},
+                        function back(text,status) {
+                            alert(text);
+                        });
+            }
+        }
+
+        function validationP(value,name) {
+            if (value==null || value=="")
+            {
+                alert(name+" can't be null")
+                return false;
+            }
+        }
+
+    </script>
+</head>
+<body>
+<div id="topDiv1" class="container" style="height: 100px">
+</div>
+<div id="topDiv2" class="container" style="height: 100px">
+    <div id="mainDiv" class="wrapper" style="height: 300px; width: 500px;">
+        <img src="../img/ru.jpg" width="200px" height="120px" >
+        <h1>Welcome</h1><br>
+        <form id="registForm"  method="POST">
+            <fieldset style="width: 400px; height: 250px; font-size: large">
+                <legend> Regist information:</legend>
+                <br /><br />
+                <div style="width: 200px;float: left;text-align: right;">
+                    <p>User Name:</p><br />
+                    <p>Password:</p><br />
+                    <p>Confirm Password:</p>
+                </div>
+                <div style="width: 150px;float: left">
+                    <p><input type="text" id="userName" name="userName" /></p>
+                    <br />
+                    <p><input type="password" id="password" name="password" /></p>
+                    <br />
+                    <p><input type="password" id="confirmPassword" name="confirmPassword"/></p><br /><br />
+                </div>
+                <div style="width: 400px; clear: both">
+                    <p><input type="button"  value="Login" onclick="turnToLoginPage()" />
+                        <input id="submit-r" type="button" value="Regist" onclick="validationForm()" /></p>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<div id="topDiv3" class="container" style="height: 100px">
+</div>
+</body>
+</html>

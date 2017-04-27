@@ -11,6 +11,16 @@
         </webroots>
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/resources" />
+          <root url="file://$MODULE_DIR$/src/main/webapp/userLogin" />
+          <root url="file://$MODULE_DIR$/src/main/java" />
+          <root url="file://$MODULE_DIR$/src/dbcp" />
+          <root url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes" />
+          <root url="file://$MODULE_DIR$/src" />
+          <root url="file://$MODULE_DIR$/src/main/webapp/config" />
+          <root url="file://$MODULE_DIR$/src/main/webapp/webTestDome/config" />
+          <root url="file://$MODULE_DIR$/target/web-demo/webTestDome/userAction" />
+          <root url="file://$MODULE_DIR$/target/web-demo/webTestDome/dbcpConn" />
+          <root url="file://$MODULE_DIR$/target/web-demo/webTestDome" />
         </sourceRoots>
       </configuration>
     </facet>
