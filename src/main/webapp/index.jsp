@@ -1,7 +1,7 @@
 <html>
 <head>
     <script>
-        self.location.href="webTestDome/pages/loginPage.html";
+        self.location.href="/pages/loginPage.html";
     </script>
 </head>
 <body>

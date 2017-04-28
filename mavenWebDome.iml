@@ -12,12 +12,11 @@
         <sourceRoots>
           <root url="file://$MODULE_DIR$/src/main/resources" />
           <root url="file://$MODULE_DIR$/src/main/webapp/userLogin" />
-          <root url="file://$MODULE_DIR$/src/main/java" />
           <root url="file://$MODULE_DIR$/src/dbcp" />
           <root url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes" />
           <root url="file://$MODULE_DIR$/src" />
           <root url="file://$MODULE_DIR$/src/main/webapp/config" />
-          <root url="file://$MODULE_DIR$/src/main/webapp/webTestDome/config" />
+          <root url="file://$MODULE_DIR$/src/main/java/main/java/webTestDome/userAction/webTestDome/config" />
           <root url="file://$MODULE_DIR$/target/web-demo/webTestDome/userAction" />
           <root url="file://$MODULE_DIR$/target/web-demo/webTestDome/dbcpConn" />
           <root url="file://$MODULE_DIR$/target/web-demo/webTestDome" />
@@ -31,36 +30,42 @@
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/webapp/userLogin" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/dbcp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/classes" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/webapp/config" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/src/main/webapp/webTestDome/config" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java/main/java/webTestDome/userAction/webTestDome/config" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/target/web-demo/webTestDome/userAction" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/web-demo/webTestDome/dbcpConn" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/web-demo/webTestDome/test" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/target/web-demo/webTestDome" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/webapp/WEB-INF/lib" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/src/main/webapp/test" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:3.8.1" level="project" />
-    <orderEntry type="module-library">
+    <orderEntry type="library" exported="" name="easymock-3.4" level="project" />
+    <orderEntry type="library" exported="" name="lib" level="project" />
+    <orderEntry type="library" exported="" name="objenesis-2.5" level="project" />
+    <orderEntry type="module-library" exported="">
       <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/jar" />
+          <root url="jar://$MODULE_DIR$/src/main/webapp/WEB-INF/lib/json-lib-2.2.3-jdk15.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="file://$USER_HOME$/jar" />
-        </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/jar" recursive="false" />
-        <jarDirectory url="file://$USER_HOME$/jar" recursive="false" type="SOURCES" />
+        <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="easymock-3.4" level="project" />
-    <orderEntry type="library" name="lib" level="project" />
-    <orderEntry type="library" name="objenesis-2.5" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/src/main/webapp/WEB-INF/lib/servlet-api.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

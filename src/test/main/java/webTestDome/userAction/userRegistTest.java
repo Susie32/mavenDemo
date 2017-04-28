@@ -1,4 +1,4 @@
-package test.main.webTestDome.userAction;
+package test.main.java.webTestDome.userAction;
 
 import main.java.webTestDome.dbcpConn.DBCPAction;
 import main.java.webTestDome.userAction.userRegist;

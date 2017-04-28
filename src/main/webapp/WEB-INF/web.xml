@@ -10,7 +10,7 @@
   </context-param>-->
   <filter>
     <filter-name>charsetFilter</filter-name>
-    <filter-class>main.webapp.webTestDome.userAction.charactorFilter</filter-class>
+    <filter-class>main.java.webTestDome.userAction.charactorFilter</filter-class>
     <init-param>
       <param-name>encoding</param-name>
       <param-value>utf-8</param-value>
@@ -23,19 +23,19 @@
 
   <servlet>
     <servlet-name>userRegist</servlet-name>
-    <servlet-class>main.webapp.webTestDome.userAction.userRegist</servlet-class>
+    <servlet-class>main.java.webTestDome.userAction.userRegist</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>userLogin</servlet-name>
-    <servlet-class>main.webapp.webTestDome.userAction.userLogin</servlet-class>
+    <servlet-class>main.java.webTestDome.userAction.userLogin</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>newTopic</servlet-name>
-    <servlet-class>main.webapp.webTestDome.userAction.newTopic</servlet-class>
+    <servlet-class>main.java.webTestDome.userAction.newTopic</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>listTopic</servlet-name>
-    <servlet-class>main.webapp.webTestDome.userAction.listTopic</servlet-class>
+    <servlet-class>main.java.webTestDome.userAction.listTopic</servlet-class>
   </servlet>
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
